@@ -10,13 +10,15 @@
     <link rel="stylesheet" href="stylesheets/style.css" />
     <!-- JavaScript for Materialize -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script defer src="../public/javascripts/script.js"></script>
   </head>
   <body>
 
       <div class="navbar-fixed">
+          
           <nav class="#689f38 light-green darken-2">
             <div class="nav-wrapper">
-              <a href="" class="brand-logo left">Bitter 'Bout Litter</a>
+              <a href="" class="brand-logo left"><i class= "material-icons">delete_forever</i>Bitter 'Bout Litter</a>
               <ul class="right">
                 <li>
                 <% if (user) { %>
@@ -29,9 +31,54 @@
             </div>
           </nav>
         </div>
-    <div class="container">
-     <h1>That Trash!</h1>
-    <p>Welcome to Bitter 'Bout Litter</p>
-    </div>  
+
+    <!-- <div class="container"> -->
+       
+          <div class="parallax-container">
+            <div class="parallax"><img src="../public/images/abandoned-cans.jpg"></div>  
+        </div>
+
+        <div class="container">
+     <h1 class="center-align">That Trash!</h1>
+    <p class="center-align">Welcome to Bitter 'Bout Litter</p>
+
+    <div class="row">
+        <div class="section white">
+            <div class="row container">
+
+        <div id="members" class="col s12">
+          <% members.forEach(function(member) { %>
+            <div class="card #a1887f brown lighten-2">
+              <div class="card-content white-text">
+                <span class="member-name"><%= member.name %></span>
+
+
+                <ul class="collection">
+                  <% member.posts.forEach(function(post) { %>
+                    <li class="collection-item blue-grey-text text-darken-2"><%- post.text %></li>
+                  <% }) %>
+                </ul>
+                <% if (member._id.equals(user && user._id)) { %>
+                  <div class="card-action">
+                    <form action="/posts" method="POST">
+                      <input type="text" name="text" class="#e8f5e9 green lighten-5">
+                      <button type="submit" class="btn white-text">New Post</button>
+                    </form>
+                  </div>
+                <% } %>
+              </div>
+            </div>
+          <% }) %>
+
+        </div>
+      </div>
+
+        </div>
+      </div>
+    </div> 
+      <div class="parallax-container">
+          <div class="parallax"><img src="../public/images/bottles-daytime.jpg"></div>
+        </div>
+
   </body>
 </html>

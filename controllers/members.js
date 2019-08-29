@@ -8,8 +8,8 @@ module.exports = {
 
 function index(req, res, next) {
   console.log(req.query)
-  // Make the query object to use with Student.find based up
-  // the user has submitted the search form or now
+  // Make the query object to use with Member.find based up
+  // the user has submitted the search form or not
   let modelQuery = req.query.name ? {name: new RegExp(req.query.name, 'i')} : {};
   // Default to sorting by name
   let sortKey = req.query.sort || 'name';
@@ -27,13 +27,14 @@ function index(req, res, next) {
 }
 
 function addPost(req, res, next) {
-  req.user.facts.push(req.body);
+  req.user.posts.push(req.body);
   req.user.save(function(err) {
     if (err) return next(err);
-    res.redirect('/memberss');
+    res.redirect('/members');
   });
 }
 
 function delPost(req, res, next) {
-
+  Member.delOne(req.params.id);
+  res.redirect('/members');
 }

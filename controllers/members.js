@@ -8,15 +8,11 @@ module.exports = {
 
 function index(req, res, next) {
   console.log(req.query)
-  // Make the query object to use with Member.find based up
-  // the user has submitted the search form or not
   let modelQuery = req.query.name ? {name: new RegExp(req.query.name, 'i')} : {};
-  // Default to sorting by name
   let sortKey = req.query.sort || 'name';
   Member.find(modelQuery)
   .sort(sortKey).exec(function(err, members) {
     if (err) return next(err);
-    // Passing search values, name & sortKey, for use in the EJS
     res.render('members/index', {
       members,
       user: req.user,
@@ -33,11 +29,6 @@ function addPost(req, res, next) {
     res.redirect('/members');
   });
 }
-
-// function delPost(req, res) {
-
-// };
-
 
 function delPost(req, res) {
   Member.findById(req.user.id, (err, user) => {

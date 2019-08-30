@@ -19,5 +19,14 @@ body {
   top: -5px;
 }
 
+#bud {
+  height: 100vmin;
+  width: 100vmin;
+}
+
+#bottle {
+  height: 100vmin;
+  width: 100vmin;
+}
 
 

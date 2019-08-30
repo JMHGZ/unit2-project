@@ -57,7 +57,7 @@
                   <% member.posts.forEach(function(post) { %>
                     <li class="collection-item blue-grey-text text-darken-2"><%- post.text %></li>
                     <form action="/members/<%= post._id %>?_method=DELETE" method="POST">
-                      <button type="submit">Delete</button>
+                      <button type="submit" class="btn #689f38 light-green darken-2">Delete</button>
                     </form>
                   <% }) %>
                 </ul>
@@ -68,7 +68,7 @@
                       
                     
 
-                      <button type="submit" class="btn white-text">New Post</button>
+                      <button type="submit" class="btn #689f38 light-green darken-2 white-text">New Post</button>
                     </form>
                   </div>
                 <% } %>

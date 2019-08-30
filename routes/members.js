@@ -6,11 +6,16 @@ router.get('/members', membersCtrl.index);
 
 router.post('/posts', isLoggedIn, membersCtrl.addPost);
 
-router.delete('/posts/:id', isLoggedIn, membersCtrl.delPost);
+
+router.delete('/members/:id', isLoggedIn, membersCtrl.delPost);
+
+module.exports = router;
+
+
+
+
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) return next();
   res.redirect('/auth/google');
 }
-
-module.exports = router;

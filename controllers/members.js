@@ -34,7 +34,19 @@ function addPost(req, res, next) {
   });
 }
 
-function delPost(req, res, next) {
-  Member.delOne(req.params.id);
-  res.redirect('/members');
+// function delPost(req, res) {
+
+// };
+
+
+function delPost(req, res) {
+  Member.findById(req.user.id, (err, user) => {
+    console.log(user)
+    console.log(req.params.id)
+
+    user.posts.remove(req.params.id)
+    user.save(()=>{
+      res.redirect("/members");
+    })
+  });
 }

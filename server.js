@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var methodOverride = require('method-override');
 var passport = require('passport');
 var logger = require('morgan');
 
@@ -34,6 +35,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(methodOverride('_method'))
 
 app.use('/', indexRouter);
 app.use('/', membersRouter);

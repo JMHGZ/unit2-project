@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="stylesheets/style.css" />
     <!-- JavaScript for Materialize -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script defer src="../public/javascripts/script.js"></script>
+    <script defer src="./public/javascripts/script.js"></script>
   </head>
   <body>
 
@@ -35,12 +35,12 @@
     <!-- <div class="container"> -->
        
           <div class="parallax-container">
-            <div class="parallax"><img src="../public/images/abandoned-cans.jpg"></div>  
+            <div class="parallax"><img src="./public/images/abandoned-cans.jpg"></div>  
         </div>
 
         <div class="container">
      <h1 class="center-align">That Trash!</h1>
-    <p class="center-align">Welcome to Bitter 'Bout Litter</p>
+    <p class="center-align">As we are all a family here in Austin Texas, let's all pitch in a hand, and clean up any litter, trash etc. that you may see around town. Let others know of trash locations that you could not get to, and let others know of your recent finds and accomplishments! Thanks so much for doing your part and helping in keeping the state we love clean!</p>
 
     <div class="row">
         <div class="section white">
@@ -56,12 +56,18 @@
                 <ul class="collection">
                   <% member.posts.forEach(function(post) { %>
                     <li class="collection-item blue-grey-text text-darken-2"><%- post.text %></li>
+                    <form action="/members/<%= post._id %>?_method=DELETE" method="POST">
+                      <button type="submit">Delete</button>
+                    </form>
                   <% }) %>
                 </ul>
                 <% if (member._id.equals(user && user._id)) { %>
                   <div class="card-action">
                     <form action="/posts" method="POST">
                       <input type="text" name="text" class="#e8f5e9 green lighten-5">
+                      
+                    
+
                       <button type="submit" class="btn white-text">New Post</button>
                     </form>
                   </div>
@@ -77,7 +83,7 @@
       </div>
     </div> 
       <div class="parallax-container">
-          <div class="parallax"><img src="../public/images/bottles-daytime.jpg"></div>
+          <div class="parallax"><img src="./public/images/bottles-daytime.jpg"></div>
         </div>
 
   </body>
